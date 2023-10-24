@@ -1,0 +1,21 @@
+﻿<Window x:Class="Worlde_UI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Worlde_UI"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Button x:Name="Vælg_fil_knap" Content="Vælg en fil " HorizontalAlignment="Center" Margin="0,100,0,0" VerticalAlignment="Top" Height="46" Width="185" Click="Vælg_fil_knap_Click"/>
+        <TextBlock x:Name="Path_label" HorizontalAlignment="Center" Margin="0,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="Fil valgt" Height="55" Width="140" FontSize="36"/>
+        <Label Content="Antal bogstaver" HorizontalAlignment="Left" Margin="306,152,0,0" VerticalAlignment="Top"/>
+        <Label Content="Antal muligheder" HorizontalAlignment="Left" Margin="306,221,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Center" Margin="0,178,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="185" Height="35"/>
+        <TextBox HorizontalAlignment="Center" Margin="0,247,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="184" Height="35"/>
+        <ProgressBar HorizontalAlignment="Center" Height="15" Margin="0,301,0,0" VerticalAlignment="Top" Width="184"/>
+        <Button x:Name="Start_knap" Content="Start" HorizontalAlignment="Center" Margin="0,321,0,0" VerticalAlignment="Top" Height="52" Width="184"/>
+        <Button x:Name="Gem_fil" Content="Gem fil" HorizontalAlignment="Left" Margin="512,334,0,0" VerticalAlignment="Top" Height="26" Width="74"/>
+
+    </Grid>
+</Window>
