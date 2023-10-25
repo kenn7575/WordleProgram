@@ -21,8 +21,6 @@ public class Algorithm
             if (currentCombination.Count == 5)
             {
                 dataToReturn.Add(new List<int>(currentCombination));
-                Console.Clear();
-                Console.WriteLine(dataToReturn.Count());
                 //progress = (int)((double)dataToReturn.Count / totalCombinations * 100);
                 return;
             }

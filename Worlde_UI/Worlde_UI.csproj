@@ -7,4 +7,8 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Wordle_BL\Wordle_BL.csproj" />
+  </ItemGroup>
+
 </Project>
