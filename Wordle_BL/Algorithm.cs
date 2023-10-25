@@ -5,16 +5,17 @@ namespace Wordle_BL;
 public class Algorithm
 {
     public static List<List<int>> uniqueBinaryCombinations = new();
-    //public static int progress = 0;
+    public static int progress = 0;
+    public event EventHandler<int> handlePlz;
 
     public List<List<int>> Run(int[] bits)
     {
         List<List<int>> dataToReturn = new();
         int wordCount = bits.Length;
 
-        // Calculate the total number of combinations using the binomial coefficient
-        //int totalCombinations = CalculateBinomialCoefficient(wordCount, 5);
-        //int currentProgress = 0;
+        //Calculate the total number of combinations using the binomial coefficient
+        int totalCombinations = CalculateBinomialCoefficient(wordCount, 5);
+        int currentProgress = 0;
 
         void RecursiveCombination(int index, int combinationBit, List<int> currentCombination)
         {
@@ -58,6 +59,13 @@ public class Algorithm
         }
         return result;
     }
-
+    protected virtual void UpdateHandlerValue(int input)
+    {
+        EventHandler<int> e = handlePlz;
+        if (e!=null)
+        {
+            e(this, input);
+        }
+    }
 }
 
