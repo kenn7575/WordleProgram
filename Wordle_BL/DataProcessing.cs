@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+
 namespace Wordle_BL
 {
     public class DataProcessing
@@ -7,26 +9,51 @@ namespace Wordle_BL
 
         public DataProcessing(string filePath)
         {
-
+            words = readFile(filePath);
         }
-        public DataProcessing()
+        public List<string>? processData(List<string> data)
         {
-
-        }
-        public List<string> processData(List<string> data)
-        {
+            if (words.Count() == 0) return null;
             List<string> processedWords = new();
 
-            foreach (string _word in words)
-            {
-
-                string word = _word.ToLower();
-                if (word.Length != 5) continue;
-                if (word.Distinct().Count() != 5) continue;
-                if (word.Where(x => string.Concat(x, word).Distinct().Count() == 5).Count() > 0) continue;
-                processedWords.Add(word);
-            }
+            foreach (string word in words) processedWords.Add(processDataPoint(word));
+            
             return processedWords;
+        }
+        public string? processDataPoint(string data)
+        {
+            string word = data.ToLower();
+            if (word.Length != 5) return null;
+            if (word.Distinct().Count() != 5) return null;
+            if (word.Where(x => string.Concat(x, word).Distinct().Count() == 5).Count() > 0) return null;
+            return word;
+            
+        }
+        public List<string> readFile(string pathName)
+        {
+            List<string> lines = new List<string>();
+
+            try
+            {
+                using (StreamReader sr = new StreamReader(pathName))
+                {
+                    string line;
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        line = line.ToLower();
+                        if (line.Length != 5) continue;
+                        if (line.Distinct().Count() != 5) continue;
+                        if (lines.Where(x => string.Concat(x, line).Distinct().Count() == 5).Count() > 0) continue;
+                        lines.Add(line);
+                    }
+                }
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error " + e.ToString());
+            }
+            return lines;
         }
     }
 }

@@ -1,0 +1,90 @@
+{
+  "version": 3,
+  "targets": {
+    "net7.0": {
+      "Wordle_BL/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "compile": {
+          "bin/placeholder/Wordle_BL.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Wordle_BL.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Wordle_BL/1.0.0": {
+      "type": "project",
+      "path": "../Wordle_BL/Wordle_BL.csproj",
+      "msbuildProject": "../Wordle_BL/Wordle_BL.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net7.0": [
+      "Wordle_BL >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "/Users/kennikollemorten/.nuget/packages/": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "/Users/kennikollemorten/Projects/WordleProgram/Wordle_Console/Wordle_Console.csproj",
+      "projectName": "Wordle_Console",
+      "projectPath": "/Users/kennikollemorten/Projects/WordleProgram/Wordle_Console/Wordle_Console.csproj",
+      "packagesPath": "/Users/kennikollemorten/.nuget/packages/",
+      "outputPath": "/Users/kennikollemorten/Projects/WordleProgram/Wordle_Console/obj/",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "/Users/kennikollemorten/.nuget/NuGet/NuGet.Config"
+      ],
+      "originalTargetFrameworks": [
+        "net7.0"
+      ],
+      "sources": {
+        "/usr/local/share/dotnet/library-packs": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "projectReferences": {
+            "/Users/kennikollemorten/Projects/WordleProgram/Wordle_BL/Wordle_BL.csproj": {
+              "projectPath": "/Users/kennikollemorten/Projects/WordleProgram/Wordle_BL/Wordle_BL.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "net7.0": {
+        "targetAlias": "net7.0",
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.309/RuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}
