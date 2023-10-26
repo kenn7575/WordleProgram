@@ -11,13 +11,23 @@ namespace Wordle_BL
         {
             words = readFile(filePath);
         }
-        public List<string>? processData(List<string> data)
+        public DataProcessing(List<string> data)
         {
-            if (words.Count() == 0) return null;
+            words = data;
+        }
+        public List<string> processData()
+        {
             List<string> processedWords = new();
 
-            foreach (string word in words) processedWords.Add(processDataPoint(word));
-            
+            foreach (string word in words)
+            {
+                string? processedWord = processDataPoint(word);
+                if(processedWord != null)
+                {
+                    processedWords.Add(processedWord);
+                }
+            }
+
             return processedWords;
         }
         public string? processDataPoint(string data)
@@ -25,9 +35,9 @@ namespace Wordle_BL
             string word = data.ToLower();
             if (word.Length != 5) return null;
             if (word.Distinct().Count() != 5) return null;
-            if (word.Where(x => string.Concat(x, word).Distinct().Count() == 5).Count() > 0) return null;
+            if (words.Where(x => string.Concat(x, word).Distinct().Count() == 5).Count() > 0) return null;
             return word;
-            
+
         }
         public List<string> readFile(string pathName)
         {

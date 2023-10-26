@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "RpR0TwcY3Bny+sHbv/TAi6bKBmBYFmLOwwfiBL+eQ8PNjPj5WwoaksBhMl5GoOYE6FMhTHUfsnkunAMZa5C6lQ==",
+  "dgSpecHash": "h7CWwcAPhtUtJyTrmpNWpgG4RwNnwm2bcvll2ZqMojNNtP0iRGHB/zbC1wq9cylH5QhFi0oyQ9RUIHFWjmSSmA==",
   "success": true,
-  "projectFilePath": "/Users/kennikollemorten/Projects/WordleProgram/Wordle_Console/Wordle_Console.csproj",
+  "projectFilePath": "C:\\Users\\HFGF\\source\\repos\\WordleProgram\\Wordle_Console\\Wordle_Console.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

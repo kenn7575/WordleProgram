@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
+using System.IO.Pipes;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,6 +26,11 @@ namespace Worlde_UI
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
         public List<string> words = new();
+        public List<List<string>> combinations = new();
+        private string _filePath = string.Empty;
+        private OpenFileDialog _openFileDialog = new();
+        private Stream _fileStream;
+
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -34,12 +40,12 @@ namespace Worlde_UI
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public int Progress { get; set; }
-        private int _progress 
+        public int Progress
         {
             get { return _progress; }
             set { _progress = value; NotifyPropertyChange("Progress"); }
         }
+        private int _progress { get; set; }
         private BackgroundWorker _worker;
 
 
@@ -47,52 +53,108 @@ namespace Worlde_UI
         {
             InitializeComponent();
             this.DataContext = this;
-            _worker = new()
-            {
-                WorkerReportsProgress = true,
-            };
+            _worker = new();
+            _worker.DoWork += new DoWorkEventHandler(WorkerDowork);
+            _worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(workerCompleteWork);
+            _worker.WorkerReportsProgress = true;
+            _worker.ProgressChanged += new ProgressChangedEventHandler(UpdateProgressBar);
         }
 
         private void Vælg_fil_knap_Click(object sender, RoutedEventArgs e)
         {
             var fileContent = string.Empty;
-            var filePath = string.Empty;
 
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            if (openFileDialog.ShowDialog() == true)
+            if (_openFileDialog.ShowDialog() == true)
             {
-                filePath = openFileDialog.FileName;
-                if (filePath != string.Empty)
+                _filePath = _openFileDialog.FileName;
+                if (_filePath != string.Empty)
                 {
-                    Path_label.Text = System.IO.Path.GetFileName(filePath);
+                    Path_label.Text = System.IO.Path.GetFileName(_filePath);
                 }
 
-                var fileStream = openFileDialog.OpenFile();
+                _fileStream = _openFileDialog.OpenFile();
+            }
+        }
 
-                using (StreamReader reader = new StreamReader(fileStream))
+        public List<List<int>> BinaryWords { get; set; } = new();
+        private void Start_knap_Click(object sender, RoutedEventArgs e)
+        {
+            _worker.RunWorkerAsync();
+        }
+
+        public void WorkerDowork(object? sender, DoWorkEventArgs e)
+        {
+            using (StreamReader reader = new StreamReader(_fileStream))
+            {
+                string line;
+                while ((line = reader.ReadLine()) != null)
                 {
-                    while (reader.Peek() >= 0)
+                    line = line.ToLower();
+                    if (line.Length != 5) continue;
+                    if (line.Distinct().Count() != 5) continue;
+                    if (words.Where(x => string.Concat(x, line).Distinct().Count() == 5).Count() > 0) continue;
+                    words.Add(line);
+                }
+            }
+            DataProcessing dp = new(words);
+            Binary B = new(dp.words);
+            Algorithm A = new();
+            //A.handlePlz += UpdateProgressBar;
+            BinaryWords = A.Run(B.bitsWords, _worker);
+            combinations = B.ConvertBitWord(BinaryWords);
+        }
+
+        public void workerCompleteWork(object? sender, RunWorkerCompletedEventArgs e)
+        {
+            Path_label_2.Text = BinaryWords.Count.ToString();
+        }
+
+        private void UpdateProgressBar(object? sender, ProgressChangedEventArgs e)
+        {
+            Progress = e.ProgressPercentage;
+        }
+
+        private async void saveFile_Click(object sender, RoutedEventArgs e)
+        {
+            if (combinations.Count() == 0)
+            {
+                return;
+            }
+            string docPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
+            using (StreamWriter outputFile = new StreamWriter(System.IO.Path.Combine(docPath, "WriteTextAsync.txt")))
+            {
+                await outputFile.WriteAsync("This is a sentence.");
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+
+                saveFileDialog.DefaultExt = "txt";
+                saveFileDialog.Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*";
+
+                string combinationString = "";
+                foreach(List<string> combination in combinations)
+                {
+                    foreach (string word in combination)
                     {
-                        words.Add(reader.ReadLine());
+                        combinationString += word + " ";
+                    }
+                    combinationString += "\n";
+                }
+                if (saveFileDialog.ShowDialog() == true)
+                {
+                    string filePath = saveFileDialog.FileName;
+
+                    try
+                    {
+                        File.WriteAllText(filePath, combinationString);
+                        // Handle success
+                    }
+                    catch (Exception ex)
+                    {
+                        // Handle error
                     }
                 }
             }
         }
-
-        public event EventHandler<int> update;
-
-        private void Start_knap_Click(object sender, RoutedEventArgs e)
-        {
-            Binary B = new(words);
-            Algorithm A = new();
-            List<List<int>> binaryWords = A.Run(B.bitsWords);
-            Path_label_2.Text = binaryWords.Count.ToString();
-            _worker.DoWork += UpdateProgressBar;
-        }
-
-        private void UpdateProgressBar(object sender, int procent)
-        {
-            Progress = procent;
-        }
     }
+
 }

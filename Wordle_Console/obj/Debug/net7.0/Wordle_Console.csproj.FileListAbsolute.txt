@@ -18,3 +18,11 @@
 /Users/kennikollemorten/Projects/WordleProgram/Wordle_Console/obj/Debug/net7.0/Wordle_Console.pdb
 /Users/kennikollemorten/Projects/WordleProgram/Wordle_Console/obj/Debug/net7.0/Wordle_Console.genruntimeconfig.cache
 /Users/kennikollemorten/Projects/WordleProgram/Wordle_Console/obj/Debug/net7.0/ref/Wordle_Console.dll
+C:\Users\HFGF\source\repos\WordleProgram\Wordle_Console\obj\Debug\net7.0\Wordle_Console.csproj.AssemblyReference.cache
+C:\Users\HFGF\source\repos\WordleProgram\Wordle_Console\obj\Debug\net7.0\Wordle_Console.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\HFGF\source\repos\WordleProgram\Wordle_Console\obj\Debug\net7.0\Wordle_Console.AssemblyInfoInputs.cache
+C:\Users\HFGF\source\repos\WordleProgram\Wordle_Console\obj\Debug\net7.0\Wordle_Console.AssemblyInfo.cs
+C:\Users\HFGF\source\repos\WordleProgram\Wordle_Console\obj\Debug\net7.0\Wordle_Console.csproj.CoreCompileInputs.cache
+C:\Users\HFGF\source\repos\WordleProgram\Wordle_Console\obj\Debug\net7.0\Wordle_Console.dll
+C:\Users\HFGF\source\repos\WordleProgram\Wordle_Console\obj\Debug\net7.0\refint\Wordle_Console.dll
+C:\Users\HFGF\source\repos\WordleProgram\Wordle_Console\obj\Debug\net7.0\Wordle_Console.pdb

@@ -10,9 +10,11 @@
         <Button x:Name="Vælg_fil_knap" Content="Vælg en fil " HorizontalAlignment="Center" Margin="0,100,0,0" VerticalAlignment="Top" Height="46" Width="185" Click="Vælg_fil_knap_Click"/>
         <TextBlock x:Name="Path_label" HorizontalAlignment="Center" Margin="0,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="Fil valgt" Height="55" Width="140" FontSize="36"/>
         <ProgressBar HorizontalAlignment="Center" Height="15" Margin="0,301,0,0" VerticalAlignment="Top" Width="184" Value="{Binding Progress, UpdateSourceTrigger=PropertyChanged}"/>
+
         <Button x:Name="Start_knap" Content="Start" HorizontalAlignment="Center" Margin="0,321,0,0" VerticalAlignment="Top" Height="52" Width="184" Click="Start_knap_Click"/>
-        <Button x:Name="Gem_fil" Content="Gem fil" HorizontalAlignment="Left" Margin="512,334,0,0" VerticalAlignment="Top" Height="26" Width="74"/>
+        <Button x:Name="saveFile" Content="Gem fil" HorizontalAlignment="Left" Margin="512,334,0,0" VerticalAlignment="Top" Height="26" Width="74" Click="saveFile_Click"/>
         <TextBlock x:Name="Path_label_2" HorizontalAlignment="Center" Margin="0,238,0,0" TextWrapping="Wrap" Text="Antal combinationer" VerticalAlignment="Top" Height="47" Width="184" FontSize="20"/>
+        <TextBox HorizontalAlignment="Center" Margin="0,278,0,0" TextWrapping="Wrap" Text="{Binding Progress}" VerticalAlignment="Top" Width="184"/>
 
     </Grid>
 </Window>
