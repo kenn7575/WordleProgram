@@ -124,7 +124,6 @@ namespace Worlde_UI
 
             using (StreamWriter outputFile = new StreamWriter(System.IO.Path.Combine(docPath, "WriteTextAsync.txt")))
             {
-                await outputFile.WriteAsync("This is a sentence.");
                 SaveFileDialog saveFileDialog = new SaveFileDialog();
 
                 saveFileDialog.DefaultExt = "txt";
